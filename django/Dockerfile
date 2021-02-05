@@ -19,6 +19,6 @@ COPY ./backend-app /backend-app
 RUN mkdir -p /rsc/web/media
 RUN mkdir -p /rsc/web/static
 RUN adduser -D drfa-user
-RUN chown -Rdrfa-user:drfa-user /rsc/
+RUN chown -R drfa-user:drfa-user /rsc/
 RUN chmod 755 /rsc/web 
 USER drfa-user
