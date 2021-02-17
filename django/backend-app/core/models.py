@@ -1,13 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings 
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, email, password=None, **extra_fields):
         """Create and save new users"""
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
@@ -24,8 +28,10 @@ class UserManager(BaseUserManager):
 
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
     """Custom user model that support using email instead of username"""
+
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
 
@@ -34,4 +40,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
+
+
+class Tag(models.Model):
+    """Tag to be used for articles"""
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
