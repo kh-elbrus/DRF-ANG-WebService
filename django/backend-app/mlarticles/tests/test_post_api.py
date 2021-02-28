@@ -249,3 +249,54 @@ class PostUploadImageTest(TestCase):
         resp = self.client.post(url, {'preview': 'notimage!'}, format='multipart')
 
         self.assertEquals(resp.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_filter_posts_by_tags(self):
+        """Test returning posts with specific tags"""
+        post1 = sample_post(user=self.user, title='Test tilte post1')
+        post2 = sample_post(user=self.user, title='Test title post2')
+        
+        tag1 = sample_tag(user=self.user, name='Test title tag1')
+        tag2 = sample_tag(user=self.user, name='Test title tag2')
+
+        post1.tags.add(tag1)
+        post2.tags.add(tag2)
+
+        post3 = sample_post(user=self.user, title='Test tilte post3')
+
+        resp = self.client.get(
+            POST_URL,
+            {'tags': f'{tag1.id}, {tag2.id}'}
+        )
+
+        serializer1 = PostSerializer(post1)
+        serializer2 = PostSerializer(post2)
+        serializer3 = PostSerializer(post3)
+
+        self.assertIn(serializer1.data, resp.data)
+        self.assertIn(serializer2.data, resp.data)
+        self.assertNotIn(serializer3.data, resp.data)
+
+    def test_filter_posts_by_tech(self):
+        """Test returning posts with specific technologies"""
+        post1 = sample_post(user=self.user, title="Test tilte post1")
+        post2 = sample_post(user=self.user, title="Test title post2")
+        
+        tech1 = sample_tech(user=self.user, name="Test title tech1")
+        tech2 = sample_tech(user=self.user, name="Test title tech2")
+
+        post1.technologies.add(tech1)
+        post2.technologies.add(tech2)
+        post3 = sample_post(user=self.user, title="Test tilte post3")
+
+        resp = self.client.get(
+            POST_URL,
+            {'technologies': f'{tech1.id}, {tech2.id}'}
+        )
+
+        serializer1 = PostSerializer(post1)
+        serializer2 = PostSerializer(post2)
+        serializer3 = PostSerializer(post3)
+
+        self.assertIn(serializer1.data, resp.data)
+        self.assertIn(serializer2.data, resp.data)
+        self.assertNotIn(serializer3.data, resp.data)
