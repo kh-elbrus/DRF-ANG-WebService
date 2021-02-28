@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from core import models
@@ -57,12 +59,23 @@ class ModelTests(TestCase):
 
         self.assertEqual(str(technology), technology.name)
 
-#    def test_post_str(self):
-#        """Test the Article string represintation"""
-#        article = models.Post.objects.create(
-#            user=sample_user(),
-#            title="Test Title of Article",
-#            description="Test description",
-#            body="Text body",
-#            link="http://iuca.kg",
-#        )
+    def test_post_str(self):
+        """Test the post string represintation"""
+        post = models.Post.objects.create(
+            user=sample_user(),
+            title="Test Title of Article",
+            description="Test description",
+            body="Text body",
+        )
+
+        self.assertEquals(str(post), post.title)
+
+    @patch('uuid.uuid4')
+    def test_post_file_name_uuid(self, mock_uuid):
+        """Test that image is saved in the correct location"""
+        uuid = 'test-uuid'
+        mock_uuid.return_value = uuid
+        file_path = models.post_image_file_path(None, 'testimage.png')
+
+        exp_path = f'uploads/articles/{uuid}.png'
+        self.assertEquals(file_path, exp_path)
