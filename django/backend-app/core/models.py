@@ -1,3 +1,6 @@
+import os
+import uuid
+
 from django.db import models
 from django.conf import settings 
 from django.contrib.auth.models import (
@@ -5,7 +8,15 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
+from ckeditor.fields import RichTextField
 
+
+def post_image_file_path(instance, filename):
+    """Generate file path for new post image"""
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+
+    return os.path.join('uploads/articles/', filename)
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -44,9 +55,39 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Tag(models.Model):
-    """Tag to be used for articles"""
+    """Tag to be used for post"""
     name = models.CharField(max_length=200)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+class Technology(models.Model):
+    """Technologies to be used for post"""
+
+    class Meta:
+        verbose_name_plural = "Technologies"
+
+    name = models.CharField(max_length=200)
+    user =models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Post(models.Model):
+    """Post object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=150, blank=False, null=False)
+    preview = models.ImageField(upload_to=post_image_file_path, blank=True, null=True)
+    description = RichTextField(max_length=180, blank=False, null=False)
+    body = RichTextField()
+    link = models.CharField(max_length=255, blank=True)
+    technologies = models.ManyToManyField('Technology')
+    tags = models.ManyToManyField('Tag')
+
+    def __str__(self):
+        return self.title

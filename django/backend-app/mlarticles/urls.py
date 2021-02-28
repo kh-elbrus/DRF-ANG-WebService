@@ -4,10 +4,13 @@ from . import views
 
 router = DefaultRouter()
 router.register('tags', views.TagViewSet)
+router.register('technologies', views.TechnologyViewSet)
+router.register('posts', views.PostViewSet)
 
 app_name = "mlarticles"
 
+
 urlpatterns = [
     path('', include(router.urls)),
-#    path('', views.ArticleList.as_view()),
+
 ]
