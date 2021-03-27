@@ -5,6 +5,7 @@ from .models import Article
 from rest_framework import generics, viewsets, mixins, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from core.models import Tag, Technology, Post
 from . import serializers
@@ -13,7 +14,7 @@ from . import serializers
 class BasePostAttrViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
                           mixins.CreateModelMixin):
     """Base viewset for user owned post attributes"""
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (JWTAuthentication,)
     permission_classes = (IsAuthenticated,)
 
 
@@ -47,7 +48,7 @@ class PostViewSet(viewsets.ModelViewSet):
     """Manage posts in the database"""
     serializer_class = serializers.PostSerializer
     queryset = Post.objects.all()
-    authentication_classes = {TokenAuthentication, }
+    authentication_classes = {JWTAuthentication, }
     permission_classes = {IsAuthenticated, }
 
     def _params_to_ints(self, qs):
