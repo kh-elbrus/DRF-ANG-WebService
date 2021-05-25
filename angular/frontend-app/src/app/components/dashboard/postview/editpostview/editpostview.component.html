@@ -1,0 +1,32 @@
+<form class="example-form" [formGroup]="form" (ngSubmit)="editPostDialog()">
+    <mat-form-field>
+      <input matInput formControlName="title" placeholder="Post Title" type="text" #title required name="title">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput formControlName="description" placeholder="Post Description" #description type="text" required name="description">
+      </mat-form-field>
+    <mat-form-field>
+      <textarea matInput formControlName="body" placeholder="Post Body" #body required name="body"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="link" placeholder="Post Link" #link type="text" required name="link">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="tags" placeholder="Post Tags" #tags type="text" required name="tags">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput formControlName="technologies" placeholder="Post Technologies" #technologies type="text" required name="technologies">
+    </mat-form-field>
+    <!-- <mat-form-field>
+        <mat-select matInput placeholder="Post Tags" required [(ngModel)]="post.tags" name="tags">
+          <mat-option *ngFor="let tag of tags" [value]="tag.value">
+            {{ tag.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    <button mat-raised-button type="submit" color="primary">Save</button>
+  </form>
+<div mat-dialog-actions>
+  <button mat-raised-button class="close" (click)="onNoClick()" color="warn">Cancel</button>
+</div>

@@ -5,3 +5,4 @@ Pillow==8.0.1
 django-ckeditor==6.0.0
 flake8==3.8.4
 djangorestframework-simplejwt==4.6.0
+django-cors-headers==3.7.0

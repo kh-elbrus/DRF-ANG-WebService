@@ -1,0 +1,18 @@
+<body *ngIf="isLoggedIn">
+    <section fxLayout="column" fxFlexFill>
+        <div fxFlex>
+            <app-postview></app-postview>
+        </div>
+    </section>
+    <!-- <div fxLayout="column" fxLayoutAlign="end stretch" fxFlexFill>
+        <app-nav-paginator></app-nav-paginator>
+        <app-footer></app-footer>
+    </div> -->
+    <div class="footer">
+        <div class="wrapper" fxFlex>
+            <app-nav-paginator></app-nav-paginator>
+            <app-footer></app-footer>
+        </div>
+      </div>
+</body>
+

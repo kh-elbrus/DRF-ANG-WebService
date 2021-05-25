@@ -1,0 +1,68 @@
+<div *ngIf="!isLoggedIn">
+   <p class="menubar">
+      <mat-toolbar color="primary" class="mat-elevation-z8">
+         <mat-toolbar-row>
+            <button mat-icon-button class="example-icon" [routerLink]="'/login'">
+               <mat-icon>auto_stories</mat-icon>
+            </button>
+            <span>Web Service</span>
+            <span class="example-spacer"></span>
+            <button mat-button class="example-icon favorite-icon" [routerLink]="'/login'">
+               <mat-icon>article</mat-icon>
+               Login
+            </button>
+            <button mat-button class="example-icon favorite-icon" [routerLink]="'/register'">
+               <mat-icon>account_circle</mat-icon>
+               Register
+            </button>
+         </mat-toolbar-row>
+   </mat-toolbar>
+   </p>
+</div>
+
+ <div *ngIf="isLoggedIn">
+    <p class="menubar">
+       <mat-toolbar color="primary" class="mat-elevation-z8">
+          <mat-toolbar-row>
+             <button mat-icon-button class="example-icon" [routerLink]="'/home'">
+                <mat-icon>auto_stories</mat-icon>
+             </button>
+             <span>Web Service</span>
+             <span class="example-spacer"></span>
+             <button mat-button class="example-icon favorite-icon" [matMenuTriggerFor]="menu">
+                <mat-icon>add</mat-icon>
+                New
+             </button>
+             <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="addDialogNewPost()">
+                  <mat-icon>feed</mat-icon>
+                   Article
+                  </button>
+             </mat-menu>
+             <button mat-button class="example-icon favorite-icon">
+                <mat-icon>article</mat-icon>
+                Articles
+             </button>
+             <button mat-button class="example-icon favorite-icon">
+                <mat-icon>account_circle</mat-icon>
+                {{email}}
+             </button>
+             <button mat-icon-button class="example-icon" (click)="logout()">
+                <mat-icon>logout</mat-icon>
+             </button>
+          </mat-toolbar-row>
+          <mat-toolbar-row>
+             <span>{{username}}</span>
+             <span class="example-spacer"></span>
+    <form class="example-form">
+    <mat-form-field class="example-full-width">
+    <mat-label>
+    <mat-icon>search</mat-icon>
+    Search</mat-label>
+    <input matInput #message maxlength="45">
+    </mat-form-field>
+    </form>
+    </mat-toolbar-row>
+    </mat-toolbar>
+    </p>
+ </div>

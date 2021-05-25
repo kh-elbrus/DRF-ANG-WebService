@@ -1,21 +1,5 @@
-<!-- <section>
-    <app-menubar></app-menubar>
-</section>
-<section class="postview">
-    <div>
-        <app-postview></app-postview>
-    </div>
-</section>
-<div fxLayout="row" fxLayoutAlign="cross end">
-    <div fxFlex>
-        <app-footerbar></app-footerbar>
-    </div>
-</div> -->
-<div fxLayout="column" fxFlexFill>
-    <app-menubar></app-menubar>
-    <div fxFlex>
-        <app-postview></app-postview>
-    </div>
-    <app-footerbar></app-footerbar>
+
+  <app-nav></app-nav>
+  <div>
     <router-outlet></router-outlet>
-</div>
+  </div>

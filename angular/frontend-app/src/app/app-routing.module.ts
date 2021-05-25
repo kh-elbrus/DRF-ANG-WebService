@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddnewarticleComponent } from './addnewarticle/addnewarticle.component';
-import { AddnewcategoryComponent } from './addnewcategory/addnewcategory.component';
-import { AppComponent } from './app.component';
-import { ArticlesideComponent } from './articleside/articleside.component';
-import { HomesideComponent } from './homeside/homeside.component';
-import { LoginsideComponent } from './loginside/loginside.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegistrationsideComponent } from './registrationside/registrationside.component';
-import { AuthGuardService } from './auth-guard.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DetailpostviewComponent } from './components/dashboard/postview/detailpostview/detailpostview.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent, canActivate: [ AuthGuardService ]},
-  {path: 'login', component: LoginsideComponent},
-  {path: 'registration', component: RegistrationsideComponent},
-  {path: 'home', component: HomesideComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [ AuthGuardService ]},
-  {path: 'articles', component: ArticlesideComponent, canActivate: [ AuthGuardService ]},
-  {path: 'new-article', component: AddnewarticleComponent, canActivate: [ AuthGuardService ]},
-  {path: 'new-category', component: AddnewcategoryComponent, canActivate: [ AuthGuardService ]},
+  {path: '', redirectTo:'home', pathMatch:'full'},
+  {path: 'home', component: DashboardComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'posts/:id', component: DetailpostviewComponent},
 ];
 
 @NgModule({

@@ -22,6 +22,14 @@ services:
         depends_on: 
             - db
 
+    ang:
+        container_name: ang
+        build: angular
+        ports: 
+            - "8080:80"
+        depends_on: 
+            - dj
+
     db:
         image: postgres
         environment: 

@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-content *ngIf="!isLoggedIn">
+      <form [formGroup]="form" (submit)="submit()">
+        <h2>Register</h2>
+        <mat-form-field class="full-width-input">
+          <input formControlName="email" matInput placeholder="Email" #email required>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <input formControlName="name" matInput placeholder="Name" #name required>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input formControlName="password" matInput type="password" placeholder="Password" #password required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

@@ -1,0 +1,17 @@
+.example-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-form > * {
+    width: 100%;
+    max-width: 450px;
+}
+
+.close{
+    width: 100%;
+}
+
+.file-input {
+    display: none;
+  }

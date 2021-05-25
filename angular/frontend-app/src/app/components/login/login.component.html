@@ -1,0 +1,22 @@
+<body class="mat-app-background app-frame mat-typography">
+<mat-card>
+    <mat-card-content *ngIf="!isLoggedIn">
+      <form>
+        <h2>Log In</h2>
+        <mat-form-field class="full-width-input">
+          <input matInput placeholder="Email" #email required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input matInput type="password" placeholder="Password" #password required>
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" (click)="login(email.value, password.value)">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

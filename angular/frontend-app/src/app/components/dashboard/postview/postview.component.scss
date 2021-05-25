@@ -1,0 +1,13 @@
+.mat-card{
+    display:grid;
+
+  }
+
+.content {
+    padding: 16px;
+}
+
+.content > mat-card {
+    width: 220px;
+    position: fixed;
+}

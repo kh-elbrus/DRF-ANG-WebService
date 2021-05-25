@@ -1,0 +1,47 @@
+<!-- <p>{{d_post.title}}</p>
+<img src="{{d_post.priview}}" alt="">
+<p>{{d_post.descripton}}</p>
+<p>{{d_post.body}}</p>
+<p>{{d_post.link}}</p>
+<p>{{d_post.tags}}</p> -->
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="card" fxFlex>
+      <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0;">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="deletePost()">
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+        <button mat-menu-item (click)="editPost()">
+          <mat-icon>mode_edit</mat-icon>
+          <span>Edit</span>
+        </button>
+      </mat-menu>
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h1>{{d_post.title}}</h1>
+      </mat-card-title>
+      <img mat-card-image src="{{d_post.preview}}">
+      <mat-card-content>
+        <h1>Description</h1>
+        <h3>{{d_post.description}}</h3>
+        <h1>Content</h1>
+        <h3>{{d_post.body}}</h3>
+        <h1>References</h1>
+        <h3>{{d_post.link}}</h3>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Comment</button>
+        <button mat-button>Share</button>
+        <div fxFlex></div>
+        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
