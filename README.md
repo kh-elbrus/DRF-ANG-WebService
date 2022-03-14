@@ -1,25 +1,34 @@
-# DRF-ANG-WebService
+<div align="center">
+
+# Rest Framework | Angular | Postgresql | Docker
+
+🙌 Web service of articles from different sources based on user interests
+
+</div>
+  
 ---
 
-Web service of articles from different sources based on user interests
+![Banner](https://dragonprogrammer.com/wp-content/uploads/2018/12/tutorial_proj.png)
 
 ---
 
 ### Installation Guide
 
-1 - Step, install [docker](https://docs.docker.com/engine/install/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/) on the server
+1. install [docker](https://docs.docker.com/engine/install/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/)
 
-2 - Step, clone the repository:
-```bash
-$ git clone https://github.com/kh-elbrus/DRF-ANG-WebService.git
+2. clone the repository:
+
+```sh
+git clone https://github.com/kh-elbrus/DRF-ANG-WebService.git
 ```
 
-3 - Step, put your django secret key, passwords into .env file
+3. put your django secret key, passwords into .env file
 
-4 - Step, run the following command
+4. run the following commands
+
 ```bash
-$ sudo docker-compose build
-$ sudo docker-compose up -d
+sudo docker-compose build
+sudo docker-compose up -d
 ```
 
 ---
