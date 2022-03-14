@@ -2,7 +2,7 @@
 
 # Rest Framework | Angular | Postgresql | Docker
 
-🙌 Web service of articles from different sources based on user interests
+🙌 Web service for posting artcles | simple CRUD 
 
 </div>
   
